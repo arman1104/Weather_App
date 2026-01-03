@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: "DM Sans", system-ui, sans-serif;
   color-scheme: light dark;
   /* color: rgba(255, 255, 255, 0.87); */
   background-color: hsl(243, 96%, 9%);
@@ -13,4 +14,30 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* DM Sans */
+@font-face {
+  font-family: "DM Sans";
+  src: url("./assets/fonts/DMSans.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./assets/fonts/DMSans-Italic.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Bricolage Grotesque */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("./assets/fonts/BricolageGrotesque.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }

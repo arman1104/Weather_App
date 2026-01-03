@@ -6,6 +6,10 @@ export default {
       maxWidth: {
         1440: "1440px",
       },
+      fontFamily: {
+        sans: ["DM Sans", "system-ui", "sans-serif"],
+        bricolage: ["Bricolage Grotesque", "sans-serif"],
+      },
     },
   },
   plugins: [],
