@@ -16,6 +16,16 @@
   box-sizing: border-box;
 }
 
+/* Custom scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* DM Sans */
 @font-face {
   font-family: "DM Sans";
