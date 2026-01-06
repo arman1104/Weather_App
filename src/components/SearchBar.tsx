@@ -59,7 +59,8 @@ const SearchBar = () => {
       ref={searchRef}
       className="flex flex-col items-center justify-center gap-3 mt-6 md:mt-8 max-w-7xl mx-auto px-4"
     >
-      <div className="flex w-full max-w-xl gap-2 md:gap-3 relative">
+      {/* <div className="flex w-full max-w-xl gap-2 md:gap-3 relative outline-dotted"> */}
+      <div className="flex flex-col md:flex-row w-full max-w-xl gap-2 md:gap-3 relative">
         {/* Input */}
         <div className="relative flex-1">
           <img

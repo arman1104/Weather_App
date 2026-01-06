@@ -1,81 +1,3 @@
-// import { useWeather } from "../context/WeatherContext";
-// import bgImageLarge from "../assets/images/bg-today-large.svg";
-// import bgImageSmall from "../assets/images/bg-today-small.svg";
-// import { formatDate } from "../utils/formatDate";
-// import {
-//   convertTemperature,
-//   getTemperatureSymbol,
-// } from "../utils/convertUnits";
-// import { getWeatherIcon } from "../utils/weatherIcons";
-
-// const WeatherCard = () => {
-//   const { currentWeather, units, loading } = useWeather();
-
-//   if (loading && !currentWeather) {
-//     return (
-//       <div className="h-64 rounded-2xl bg-white/10 flex items-center justify-center">
-//         <p className="text-white font-sans">Loading...</p>
-//       </div>
-//     );
-//   }
-
-//   if (!currentWeather) return null;
-
-//   const temperature = convertTemperature(
-//     currentWeather.temperature,
-//     units.temperature
-//   );
-//   const tempSymbol = getTemperatureSymbol(units.temperature);
-//   const weatherIcon = getWeatherIcon(currentWeather.conditionCode);
-
-//   return (
-//     <section
-//       className="
-//         h-64
-//         rounded-2xl
-//         bg-cover
-//         bg-center
-//         px-8
-//         py-6
-//         text-white
-//         w-full
-//         flex
-//         items-center
-//       "
-//       style={{ backgroundImage: `url(${bgImageLarge})` }}
-//     >
-//       {/* LEFT */}
-//       <div className="flex-1">
-//         <h2 className="text-xl font-medium font-sans">
-//           {currentWeather.location}, {currentWeather.country}
-//         </h2>
-//         <p className="mt-1 text-sm opacity-80 font-sans">
-//           {formatDate(currentWeather.date)}
-//         </p>
-//       </div>
-
-//       {/* CENTER */}
-//       <div className="flex-1 flex justify-center">
-//         <img
-//           src={weatherIcon}
-//           alt="weather"
-//           className="h-20 w-20 object-contain"
-//         />
-//       </div>
-
-//       {/* RIGHT */}
-//       <div className="flex-1 text-right">
-//         <p className="font-bricolage text-6xl md:text-7xl font-bold leading-none">
-//           {temperature}
-//           {tempSymbol.replace("°", "")}°
-//         </p>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default WeatherCard;
-
 import { useWeather } from "../context/WeatherContext";
 import { formatDate } from "../utils/formatDate";
 import {
@@ -122,6 +44,7 @@ const WeatherCard = () => {
 
         bg-[url('/src/assets/images/bg-today-small.svg')]
         md:bg-[url('/src/assets/images/bg-today-large.svg')]
+        
       "
     >
       {/* TOP / LEFT */}

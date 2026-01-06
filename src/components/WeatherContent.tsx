@@ -14,7 +14,7 @@ const WeatherContent = () => {
   return (
     <>
       {/* Title */}
-      <div className="text-center mt-2 px-4">
+      <div className="text-center mt-6 px-4">
         {/* <Header /> */}
         <Header />
         <h1 className="font-bricolage text-4xl md:text-5xl font-semibold">
@@ -54,74 +54,8 @@ const WeatherContent = () => {
       {!error && (
         <div className="max-w-6xl mx-auto px-2 mt-8 flex flex-col lg:flex-row gap-6">
           {/* LEFT */}
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 space-y-6 px-1">
             <WeatherCard />
-
-            {/* {currentWeather && (
-              <div className="flex flex-wrap md:flex-nowrap gap-2">
-                <div className="flex-1">
-                  <WeatherStatCard
-                    label="Feels Like"
-                    value={currentWeather.feelsLike}
-                    type="temperature"
-                  />
-                </div>
-                <div className="flex-1">
-                  <WeatherStatCard
-                    label="Humidity"
-                    value={currentWeather.humidity}
-                    type="humidity"
-                  />
-                </div>
-                <div className="flex-1">
-                  <WeatherStatCard
-                    label="Wind"
-                    value={currentWeather.windSpeed}
-                    type="wind"
-                  />
-                </div>
-                <div className="flex-1">
-                  <WeatherStatCard
-                    label="Precipitation"
-                    value={currentWeather.precipitation}
-                    type="precipitation"
-                  />
-                </div>
-              </div>
-            )} */}
-
-            {/* {currentWeather && (
-              <div className="flex gap-4">
-                <div className="w-[140px] flex-1">
-                  <WeatherStatCard
-                    label="Feels Like"
-                    value={currentWeather.feelsLike}
-                    type="temperature"
-                  />
-                </div>
-                <div className="w-[140px] flex-1">
-                  <WeatherStatCard
-                    label="Humidity"
-                    value={currentWeather.humidity}
-                    type="humidity"
-                  />
-                </div>
-                <div className="w-[140px] flex-1">
-                  <WeatherStatCard
-                    label="Wind"
-                    value={currentWeather.windSpeed}
-                    type="wind"
-                  />
-                </div>
-                <div className="w-[140px] flex-1">
-                  <WeatherStatCard
-                    label="Precipitation"
-                    value={currentWeather.precipitation}
-                    type="precipitation"
-                  />
-                </div>
-              </div>
-            )} */}
 
             {currentWeather && (
               <div className="flex flex-wrap gap-3">

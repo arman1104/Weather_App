@@ -82,7 +82,7 @@ const HourlyForecast = () => {
             <div className="flex items-center gap-3">
               <span className="text-sm font-medium text-white font-sans min-w-[3rem] text-right">
                 {temperature(hour.temperature)}
-                {tempSymbol.replace("°", "")}°
+                {tempSymbol.replace("°", " ")}°
               </span>
             </div>
           </div>

@@ -29,12 +29,30 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleSwitchToImperial = () => {
-    updateUnits({
-      temperature: "fahrenheit",
-      windSpeed: "mph",
-      precipitation: "in",
-    });
+  // const handleSwitchToImperial = () => {
+  //   updateUnits({
+  //     temperature: "fahrenheit",
+  //     windSpeed: "mph",
+  //     precipitation: "in",
+  //   });
+  // };
+
+  const handleToggleUnits = () => {
+    if (isImperial) {
+      // Switch to Metric
+      updateUnits({
+        temperature: "celsius",
+        windSpeed: "kmh",
+        precipitation: "mm",
+      });
+    } else {
+      // Switch to Imperial
+      updateUnits({
+        temperature: "fahrenheit",
+        windSpeed: "mph",
+        precipitation: "in",
+      });
+    }
   };
 
   const handleTemperatureChange = (unit: TemperatureUnit) => {
@@ -55,8 +73,8 @@ const Header = () => {
     units.precipitation === "in";
 
   return (
-    <nav className="w-full py-3">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+    <nav className="w-full">
+      <div className="mx-auto flex max-w-7xl items-center justify-between lg:px-8 py-4">
         {/* Left: Logo */}
         <div className="flex items-center">
           <img src={Logo} alt="Weather logo" className="h-8 w-auto" />
@@ -80,14 +98,21 @@ const Header = () => {
           >
             <img src={unitIcon} alt="units" className="h-4 w-4" />
             <span className="font-sans">Units</span>
-            <img src={dropdownIcon} alt="dropdown" className="h-4 w-4" />
+            <img src={dropdownIcon} alt="dropdown" className="h-3 w-3" />
           </button>
 
           {/* Dropdown Menu */}
           {isOpen && (
             <div className="absolute right-0 top-full mt-2 w-64 rounded-lg bg-gray-800/95 backdrop-blur-md p-4 shadow-xl z-50">
-              <button
+              {/* <button
                 onClick={handleSwitchToImperial}
+                className="w-full text-left text-sm font-medium text-white hover:text-gray-200 mb-4 pb-4 border-b border-gray-700"
+              >
+                Switch to {isImperial ? "Metric" : "Imperial"}
+              </button> */}
+
+              <button
+                onClick={handleToggleUnits}
                 className="w-full text-left text-sm font-medium text-white hover:text-gray-200 mb-4 pb-4 border-b border-gray-700"
               >
                 Switch to {isImperial ? "Metric" : "Imperial"}
