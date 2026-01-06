@@ -4,7 +4,11 @@ import unitIcon from "../assets/images/icon-units.svg";
 import dropdownIcon from "../assets/images/icon-dropdown.svg";
 import checkmarkIcon from "../assets/images/icon-checkmark.svg";
 import { useWeather } from "../context/WeatherContext";
-import type { TemperatureUnit, WindSpeedUnit, PrecipitationUnit } from "../utils/convertUnits";
+import type {
+  TemperatureUnit,
+  WindSpeedUnit,
+  PrecipitationUnit,
+} from "../utils/convertUnits";
 
 const Header = () => {
   const { units, updateUnits } = useWeather();
@@ -13,7 +17,10 @@ const Header = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -42,10 +49,13 @@ const Header = () => {
     updateUnits({ precipitation: unit });
   };
 
-  const isImperial = units.temperature === "fahrenheit" && units.windSpeed === "mph" && units.precipitation === "in";
+  const isImperial =
+    units.temperature === "fahrenheit" &&
+    units.windSpeed === "mph" &&
+    units.precipitation === "in";
 
   return (
-    <nav className="w-full py-4">
+    <nav className="w-full py-3">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         {/* Left: Logo */}
         <div className="flex items-center">
@@ -86,7 +96,9 @@ const Header = () => {
               <div className="space-y-4">
                 {/* Temperature */}
                 <div>
-                  <p className="text-xs font-medium text-gray-400 mb-2">Temperature</p>
+                  <p className="text-xs font-medium text-gray-400 mb-2">
+                    Temperature
+                  </p>
                   <div className="space-y-2">
                     <button
                       onClick={() => handleTemperatureChange("celsius")}
@@ -94,7 +106,11 @@ const Header = () => {
                     >
                       <span>Celsius (°C)</span>
                       {units.temperature === "celsius" && (
-                        <img src={checkmarkIcon} alt="selected" className="h-4 w-4" />
+                        <img
+                          src={checkmarkIcon}
+                          alt="selected"
+                          className="h-4 w-4"
+                        />
                       )}
                     </button>
                     <button
@@ -103,7 +119,11 @@ const Header = () => {
                     >
                       <span>Fahrenheit (°F)</span>
                       {units.temperature === "fahrenheit" && (
-                        <img src={checkmarkIcon} alt="selected" className="h-4 w-4" />
+                        <img
+                          src={checkmarkIcon}
+                          alt="selected"
+                          className="h-4 w-4"
+                        />
                       )}
                     </button>
                   </div>
@@ -111,7 +131,9 @@ const Header = () => {
 
                 {/* Wind Speed */}
                 <div>
-                  <p className="text-xs font-medium text-gray-400 mb-2">Wind Speed</p>
+                  <p className="text-xs font-medium text-gray-400 mb-2">
+                    Wind Speed
+                  </p>
                   <div className="space-y-2">
                     <button
                       onClick={() => handleWindSpeedChange("kmh")}
@@ -119,7 +141,11 @@ const Header = () => {
                     >
                       <span>km/h</span>
                       {units.windSpeed === "kmh" && (
-                        <img src={checkmarkIcon} alt="selected" className="h-4 w-4" />
+                        <img
+                          src={checkmarkIcon}
+                          alt="selected"
+                          className="h-4 w-4"
+                        />
                       )}
                     </button>
                     <button
@@ -128,7 +154,11 @@ const Header = () => {
                     >
                       <span>mph</span>
                       {units.windSpeed === "mph" && (
-                        <img src={checkmarkIcon} alt="selected" className="h-4 w-4" />
+                        <img
+                          src={checkmarkIcon}
+                          alt="selected"
+                          className="h-4 w-4"
+                        />
                       )}
                     </button>
                   </div>
@@ -136,7 +166,9 @@ const Header = () => {
 
                 {/* Precipitation */}
                 <div>
-                  <p className="text-xs font-medium text-gray-400 mb-2">Precipitation</p>
+                  <p className="text-xs font-medium text-gray-400 mb-2">
+                    Precipitation
+                  </p>
                   <div className="space-y-2">
                     <button
                       onClick={() => handlePrecipitationChange("mm")}
@@ -144,7 +176,11 @@ const Header = () => {
                     >
                       <span>Millimeters (mm)</span>
                       {units.precipitation === "mm" && (
-                        <img src={checkmarkIcon} alt="selected" className="h-4 w-4" />
+                        <img
+                          src={checkmarkIcon}
+                          alt="selected"
+                          className="h-4 w-4"
+                        />
                       )}
                     </button>
                     <button
@@ -153,7 +189,11 @@ const Header = () => {
                     >
                       <span>Inches (in)</span>
                       {units.precipitation === "in" && (
-                        <img src={checkmarkIcon} alt="selected" className="h-4 w-4" />
+                        <img
+                          src={checkmarkIcon}
+                          alt="selected"
+                          className="h-4 w-4"
+                        />
                       )}
                     </button>
                   </div>

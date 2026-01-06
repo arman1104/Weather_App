@@ -1,43 +1,101 @@
+// import { useWeather } from "../context/WeatherContext";
+// import bgImageLarge from "../assets/images/bg-today-large.svg";
+// import bgImageSmall from "../assets/images/bg-today-small.svg";
+// import { formatDate } from "../utils/formatDate";
+// import {
+//   convertTemperature,
+//   getTemperatureSymbol,
+// } from "../utils/convertUnits";
+// import { getWeatherIcon } from "../utils/weatherIcons";
+
+// const WeatherCard = () => {
+//   const { currentWeather, units, loading } = useWeather();
+
+//   if (loading && !currentWeather) {
+//     return (
+//       <div className="h-64 rounded-2xl bg-white/10 flex items-center justify-center">
+//         <p className="text-white font-sans">Loading...</p>
+//       </div>
+//     );
+//   }
+
+//   if (!currentWeather) return null;
+
+//   const temperature = convertTemperature(
+//     currentWeather.temperature,
+//     units.temperature
+//   );
+//   const tempSymbol = getTemperatureSymbol(units.temperature);
+//   const weatherIcon = getWeatherIcon(currentWeather.conditionCode);
+
+//   return (
+//     <section
+//       className="
+//         h-64
+//         rounded-2xl
+//         bg-cover
+//         bg-center
+//         px-8
+//         py-6
+//         text-white
+//         w-full
+//         flex
+//         items-center
+//       "
+//       style={{ backgroundImage: `url(${bgImageLarge})` }}
+//     >
+//       {/* LEFT */}
+//       <div className="flex-1">
+//         <h2 className="text-xl font-medium font-sans">
+//           {currentWeather.location}, {currentWeather.country}
+//         </h2>
+//         <p className="mt-1 text-sm opacity-80 font-sans">
+//           {formatDate(currentWeather.date)}
+//         </p>
+//       </div>
+
+//       {/* CENTER */}
+//       <div className="flex-1 flex justify-center">
+//         <img
+//           src={weatherIcon}
+//           alt="weather"
+//           className="h-20 w-20 object-contain"
+//         />
+//       </div>
+
+//       {/* RIGHT */}
+//       <div className="flex-1 text-right">
+//         <p className="font-bricolage text-6xl md:text-7xl font-bold leading-none">
+//           {temperature}
+//           {tempSymbol.replace("°", "")}°
+//         </p>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default WeatherCard;
+
 import { useWeather } from "../context/WeatherContext";
-import bgImageLarge from "../assets/images/bg-today-large.svg";
-import bgImageSmall from "../assets/images/bg-today-small.svg";
 import { formatDate } from "../utils/formatDate";
 import {
   convertTemperature,
   getTemperatureSymbol,
 } from "../utils/convertUnits";
-import { getWeatherIcon, getWeatherDescription } from "../utils/weatherIcons";
+import { getWeatherIcon } from "../utils/weatherIcons";
 
 const WeatherCard = () => {
   const { currentWeather, units, loading } = useWeather();
 
   if (loading && !currentWeather) {
     return (
-      <div className="flex items-center justify-center h-64 rounded-2xl bg-white/10 mx-auto max-w-7xl px-4">
-        <div className="text-center">
-          <div className="flex justify-center gap-2 mb-2">
-            <div
-              className="h-2 w-2 bg-white rounded-full animate-bounce"
-              style={{ animationDelay: "0s" }}
-            ></div>
-            <div
-              className="h-2 w-2 bg-white rounded-full animate-bounce"
-              style={{ animationDelay: "0.2s" }}
-            ></div>
-            <div
-              className="h-2 w-2 bg-white rounded-full animate-bounce"
-              style={{ animationDelay: "0.4s" }}
-            ></div>
-          </div>
-          <p className="text-white font-sans">Loading...</p>
-        </div>
+      <div className="h-64 rounded-2xl bg-white/10 flex items-center justify-center">
+        <p className="text-white font-sans">Loading...</p>
       </div>
     );
   }
 
-  if (!currentWeather) {
-    return null;
-  }
+  if (!currentWeather) return null;
 
   const temperature = convertTemperature(
     currentWeather.temperature,
@@ -45,52 +103,61 @@ const WeatherCard = () => {
   );
   const tempSymbol = getTemperatureSymbol(units.temperature);
   const weatherIcon = getWeatherIcon(currentWeather.conditionCode);
-  const description = getWeatherDescription(currentWeather.conditionCode);
 
   return (
     <section
       className="
-        relative
         h-64
         rounded-2xl
         bg-cover
         bg-center
-        p-6
+        px-6
+        py-6
         text-white
-        mx-auto
-        max-w-3xl
-        mt-8
+        w-full
+
+        flex flex-col
+        md:flex-row
+        md:items-center
+
+        bg-[url('/src/assets/images/bg-today-small.svg')]
+        md:bg-[url('/src/assets/images/bg-today-large.svg')]
       "
-      style={{ backgroundImage: `url(${bgImageLarge})` }}
     >
-      {/* Top content */}
-      <div>
-        <p className="text-sm opacity-80 font-sans">
-          {formatDate(currentWeather.date)}
-        </p>
-        <h2 className="mt-1 text-xl font-medium font-sans">
+      {/* TOP / LEFT */}
+      <div className="flex-1 text-center md:text-left">
+        <h2 className="text-xl font-medium font-sans">
           {currentWeather.location}, {currentWeather.country}
         </h2>
+        <p className="mt-1 text-sm opacity-80 font-sans">
+          {formatDate(currentWeather.date)}
+        </p>
       </div>
 
-      {/* Bottom content */}
-      <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-        <div>
-          <p className="font-bricolage text-5xl md:text-7xl font-bold leading-none">
-            {temperature}
-            {tempSymbol.replace("°", "")}°
-          </p>
-          <p className="mt-2 text-sm opacity-80 font-sans capitalize">
-            {description}
-          </p>
-        </div>
-        <div className="hidden sm:block">
-          <img
-            src={weatherIcon}
-            alt={description}
-            className="h-16 md:h-24 w-16 md:w-24 object-contain"
-          />
-        </div>
+      {/* GAP ON MOBILE */}
+      <div className="h-6 md:hidden" />
+
+      {/* CENTER (mobile) / CENTER COLUMN (desktop) */}
+      <div className="flex-1 flex items-center justify-center gap-4">
+        <img
+          src={weatherIcon}
+          alt="weather"
+          className="h-16 w-16 md:h-20 md:w-20 object-contain"
+        />
+
+        {/* Temperature on mobile stays with icon */}
+        <p className="font-bricolage text-5xl md:hidden font-bold leading-none">
+          {temperature}
+          {tempSymbol.replace("°", "")}°
+        </p>
+      </div>
+
+      {/* RIGHT (desktop only) */}
+      <div className="hidden md:flex flex-1 justify-end">
+        <p className="font-bricolage text-6xl md:text-7xl font-bold leading-none">
+          {temperature}
+          {tempSymbol.replace("°", "")}°
+        </p>
       </div>
     </section>
   );

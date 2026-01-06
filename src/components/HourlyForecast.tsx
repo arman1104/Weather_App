@@ -32,7 +32,7 @@ const HourlyForecast = () => {
   const tempSymbol = getTemperatureSymbol(units.temperature);
 
   return (
-    <div className="w-full lg:w-80  bg-white/10 rounded-lg p-4">
+    <div className="w-full lg:w-80  bg-white/10 rounded-xl p-4">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-white font-sans">
           Hourly forecast
@@ -67,13 +67,13 @@ const HourlyForecast = () => {
         {hourlyForecast.map((hour, index) => (
           <div
             key={index}
-            className="flex items-center justify-between rounded-xl bg-white/10 p-3 backdrop-blur-sm "
+            className="flex items-center justify-between rounded-xl bg-white/10 p-3 backdrop-blur-sm"
           >
             <div className="flex items-center justify-center gap-2">
               <img
                 src={getWeatherIcon(hour.conditionCode)}
                 alt="weather"
-                className="h-8 w-8 object-contain"
+                className="h-7 w-7 object-contain"
               />
               <span className="text-sm text-white font-sans">
                 {formatHour(hour.time)} PM

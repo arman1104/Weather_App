@@ -14,7 +14,7 @@ const WeatherContent = () => {
   return (
     <>
       {/* Title */}
-      <div className="text-center mt-8 px-4">
+      <div className="text-center mt-2 px-4">
         {/* <Header /> */}
         <Header />
         <h1 className="font-bricolage text-4xl md:text-5xl font-semibold">
@@ -52,35 +52,104 @@ const WeatherContent = () => {
 
       {/* MAIN CONTENT */}
       {!error && (
-        <div className="max-w-7xl mx-auto px-4 mt-8 flex flex-col lg:flex-row gap-8">
+        <div className="max-w-6xl mx-auto px-2 mt-8 flex flex-col lg:flex-row gap-6">
           {/* LEFT */}
           <div className="flex-1 space-y-6">
             <WeatherCard />
 
-            {currentWeather && (
+            {/* {currentWeather && (
               <div className="flex flex-wrap md:flex-nowrap gap-2">
-                <div className="flex-1 min-w-[120px]">
+                <div className="flex-1">
                   <WeatherStatCard
                     label="Feels Like"
                     value={currentWeather.feelsLike}
                     type="temperature"
                   />
                 </div>
-                <div className="flex-1 min-w-[120px]">
+                <div className="flex-1">
                   <WeatherStatCard
                     label="Humidity"
                     value={currentWeather.humidity}
                     type="humidity"
                   />
                 </div>
-                <div className="flex-1 min-w-[120px]">
+                <div className="flex-1">
                   <WeatherStatCard
                     label="Wind"
                     value={currentWeather.windSpeed}
                     type="wind"
                   />
                 </div>
-                <div className="flex-1 min-w-[120px]">
+                <div className="flex-1">
+                  <WeatherStatCard
+                    label="Precipitation"
+                    value={currentWeather.precipitation}
+                    type="precipitation"
+                  />
+                </div>
+              </div>
+            )} */}
+
+            {/* {currentWeather && (
+              <div className="flex gap-4">
+                <div className="w-[140px] flex-1">
+                  <WeatherStatCard
+                    label="Feels Like"
+                    value={currentWeather.feelsLike}
+                    type="temperature"
+                  />
+                </div>
+                <div className="w-[140px] flex-1">
+                  <WeatherStatCard
+                    label="Humidity"
+                    value={currentWeather.humidity}
+                    type="humidity"
+                  />
+                </div>
+                <div className="w-[140px] flex-1">
+                  <WeatherStatCard
+                    label="Wind"
+                    value={currentWeather.windSpeed}
+                    type="wind"
+                  />
+                </div>
+                <div className="w-[140px] flex-1">
+                  <WeatherStatCard
+                    label="Precipitation"
+                    value={currentWeather.precipitation}
+                    type="precipitation"
+                  />
+                </div>
+              </div>
+            )} */}
+
+            {currentWeather && (
+              <div className="flex flex-wrap gap-3">
+                <div className="w-[calc(50%-0.375rem)] md:flex-1">
+                  <WeatherStatCard
+                    label="Feels Like"
+                    value={currentWeather.feelsLike}
+                    type="temperature"
+                  />
+                </div>
+
+                <div className="w-[calc(50%-0.375rem)] md:flex-1">
+                  <WeatherStatCard
+                    label="Humidity"
+                    value={currentWeather.humidity}
+                    type="humidity"
+                  />
+                </div>
+
+                <div className="w-[calc(50%-0.375rem)] md:flex-1">
+                  <WeatherStatCard
+                    label="Wind"
+                    value={currentWeather.windSpeed}
+                    type="wind"
+                  />
+                </div>
+
+                <div className="w-[calc(50%-0.375rem)] md:flex-1">
                   <WeatherStatCard
                     label="Precipitation"
                     value={currentWeather.precipitation}
