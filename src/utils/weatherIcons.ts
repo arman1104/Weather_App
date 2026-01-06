@@ -7,75 +7,43 @@ import iconStorm from "../assets/images/icon-storm.webp";
 import iconSnow from "../assets/images/icon-snow.webp";
 import iconFog from "../assets/images/icon-fog.webp";
 
-export const getWeatherIcon = (conditionCode: number): string => {
-  // OpenWeatherMap condition codes
+export const getWeatherIcon = (code: number): string => {
   // Clear sky
-  if (conditionCode === 800) return iconSunny;
+  if (code === 0) return iconSunny;
 
-  // Clouds
-  if (conditionCode >= 801 && conditionCode <= 804) {
-    if (conditionCode === 801) return iconPartlyCloudy;
-    return iconOvercast;
-  }
+  // Mainly clear, partly cloudy, overcast
+  if (code === 1 || code === 2) return iconPartlyCloudy;
+  if (code === 3) return iconOvercast;
 
-  // Rain
-  if (conditionCode >= 500 && conditionCode <= 531) {
-    if (conditionCode >= 500 && conditionCode <= 504) return iconRain;
-    if (conditionCode >= 520 && conditionCode <= 531) return iconDrizzle;
-    return iconRain;
-  }
+  // Fog
+  if (code === 45 || code === 48) return iconFog;
 
-  // Thunderstorm
-  if (conditionCode >= 200 && conditionCode <= 232) return iconStorm;
+  // Drizzle & Rain
+  if (code >= 51 && code <= 55) return iconDrizzle;
+  if (code >= 56 && code <= 67) return iconRain;
 
   // Snow
-  if (conditionCode >= 600 && conditionCode <= 622) return iconSnow;
+  if (code >= 71 && code <= 77) return iconSnow;
 
-  // Atmosphere (mist, fog, etc.)
-  if (conditionCode >= 701 && conditionCode <= 781) return iconFog;
+  // Rain showers
+  if (code >= 80 && code <= 82) return iconRain;
 
-  // Default
+  // Thunderstorm
+  if (code >= 95) return iconStorm;
+
+  // Fallback
   return iconPartlyCloudy;
 };
 
-export const getWeatherDescription = (conditionCode: number): string => {
-  if (conditionCode === 800) return "Sunny";
-  if (conditionCode >= 801 && conditionCode <= 804) {
-    if (conditionCode === 801) return "Partly Cloudy";
-    if (conditionCode === 802) return "Partly Cloudy";
-    return "Overcast";
-  }
-  if (conditionCode >= 500 && conditionCode <= 504) return "Rain";
-  if (conditionCode >= 520 && conditionCode <= 531) return "Drizzle";
-  if (conditionCode >= 200 && conditionCode <= 232) return "Thunderstorm";
-  if (conditionCode >= 600 && conditionCode <= 622) return "Snow";
-  if (conditionCode >= 701 && conditionCode <= 781) return "Fog";
-  return "Partly Cloudy";
+export const getWeatherDescription = (code: number): string => {
+  if (code === 0) return "Clear sky";
+  if (code === 1) return "Mainly clear";
+  if (code === 2) return "Partly cloudy";
+  if (code === 3) return "Overcast";
+  if (code === 45 || code === 48) return "Fog";
+  if (code >= 51 && code <= 67) return "Rain";
+  if (code >= 71 && code <= 77) return "Snow";
+  if (code >= 80 && code <= 82) return "Rain showers";
+  if (code >= 95) return "Thunderstorm";
+  return "Partly cloudy";
 };
-
-// import sunny from "../assets/images/icon-sunny.webp";
-// import cloud from "../assets/images/icon-overcast.webp";
-// import rain from "../assets/images/icon-rain.webp";
-// import snow from "../assets/images/icon-snow.webp";
-// import storm from "../assets/images/icon-storm.webp";
-// import fog from "../assets/images/icon-fog.webp";
-
-// export const getWeatherIcon = (code: number) => {
-//   if (code === 0) return sunny;
-//   if ([1, 2, 3].includes(code)) return cloud;
-//   if ([45, 48].includes(code)) return fog;
-//   if (code >= 51 && code <= 67) return rain;
-//   if (code >= 71 && code <= 77) return snow;
-//   if (code >= 95) return storm;
-//   return cloud;
-// };
-
-// export const getWeatherDescription = (code: number) => {
-//   if (code === 0) return "Clear sky";
-//   if ([1, 2, 3].includes(code)) return "Cloudy";
-//   if ([45, 48].includes(code)) return "Fog";
-//   if (code >= 51 && code <= 67) return "Rain";
-//   if (code >= 71 && code <= 77) return "Snow";
-//   if (code >= 95) return "Thunderstorm";
-//   return "Cloudy";
-// };
