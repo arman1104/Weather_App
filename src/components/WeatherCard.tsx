@@ -37,7 +37,6 @@ const WeatherCard = () => {
         py-6
         text-white
         w-full
-
         flex flex-col
         md:flex-row
         md:items-center
@@ -61,26 +60,28 @@ const WeatherCard = () => {
       <div className="h-6 md:hidden" />
 
       {/* CENTER (mobile) / CENTER COLUMN (desktop) */}
-      <div className="flex-1 flex items-center justify-center gap-4">
-        <img
-          src={weatherIcon}
-          alt="weather"
-          className="h-16 w-16 md:h-20 md:w-20 object-contain"
-        />
+      <div className="flex justify-center items-center gap-3">
+        <div className="flex-1 flex items-center justify-center gap-4 ">
+          <img
+            src={weatherIcon}
+            alt="weather"
+            className="h-16 w-16 md:h-20 md:w-20 object-contain"
+          />
 
-        {/* Temperature on mobile stays with icon */}
-        <p className="font-bricolage text-5xl md:hidden font-bold leading-none">
-          {temperature}
-          {tempSymbol.replace("°", "")}°
-        </p>
-      </div>
+          {/* Temperature on mobile stays with icon */}
+          <p className="font-bricolage text-5xl md:hidden font-bold leading-none">
+            {temperature}
+            {tempSymbol.replace("°", "")}°
+          </p>
+        </div>
 
-      {/* RIGHT (desktop only) */}
-      <div className="hidden md:flex flex-1 justify-end">
-        <p className="font-bricolage text-6xl md:text-7xl font-bold leading-none">
-          {temperature}
-          {tempSymbol.replace("°", "")}°
-        </p>
+        {/* RIGHT (desktop only) */}
+        <div className="hidden md:flex flex-1 justify-end">
+          <p className="font-bricolage text-6xl md:text-7xl font-bold leading-none">
+            {temperature}
+            {tempSymbol.replace("°", "")}°
+          </p>
+        </div>
       </div>
     </section>
   );

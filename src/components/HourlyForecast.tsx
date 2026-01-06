@@ -69,7 +69,7 @@ const HourlyForecast = () => {
         {hourlyForecast.map((hour, index) => (
           <div
             key={index}
-            className="flex  items-center justify-between rounded-xl bg-white/10 p-3 backdrop-blur-sm"
+            className="flex  items-center justify-between rounded-md bg-white/10 p-3 backdrop-blur-sm"
           >
             <div className="flex items-center justify-center gap-2">
               <img
