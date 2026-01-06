@@ -13,7 +13,7 @@ const SearchBar = () => {
   // Mock suggestions (UI-only, matches design)
   const mockSuggestions = ["Berlin", "London", "New York", "Paris"];
 
-  // ✅ FIX: Suggestions actually appear now
+  // Suggestions actually appear now
   useEffect(() => {
     if (searchQuery.trim().length > 0) {
       setSuggestions(mockSuggestions);
@@ -81,14 +81,14 @@ const SearchBar = () => {
               rounded-lg
               bg-white/15
               text-white text-sm font-sans
-              placeholder-gray-300
-              focus:outline-none focus:ring-2 focus:ring-white/50
+              placeholder-gray-200
+              focus:outline-none focus:ring-1 focus:ring-white
             "
           />
 
           {/* Suggestions */}
           {showSuggestions && suggestions.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-2 rounded-lg bg-gray-800/95 backdrop-blur-md shadow-xl z-50">
+            <div className="absolute top-full left-0 right-0 mt-2 rounded-lg bg-slate-800/100 backdrop-blur-md shadow-xl z-50">
               {suggestions.map((city) => (
                 <button
                   key={city}

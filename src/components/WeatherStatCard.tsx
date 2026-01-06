@@ -46,7 +46,7 @@ const WeatherStatCard = ({ label, value, type }: WeatherStatCardProps) => {
   }
 
   return (
-    <div className="rounded-xl bg-white/10 p-3 md:p-4 backdrop-blur-sm">
+    <div className="rounded-xl bg-white/10 p-3 md:p-6 backdrop-blur-sm">
       <p className="text-xs font-medium text-gray-300 font-sans mb-1">
         {label}
       </p>

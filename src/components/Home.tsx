@@ -8,7 +8,7 @@ import errorIcon from "../assets/images/icon-error.svg";
 import retryIcon from "../assets/images/icon-retry.svg";
 import Header from "./Header";
 
-const WeatherContent = () => {
+const Home = () => {
   const { currentWeather, error, retry } = useWeather();
 
   return (
@@ -106,4 +106,4 @@ const WeatherContent = () => {
   );
 };
 
-export default WeatherContent;
+export default Home;

@@ -103,7 +103,7 @@ const Header = () => {
 
           {/* Dropdown Menu */}
           {isOpen && (
-            <div className="absolute right-0 top-full mt-2 w-64 rounded-lg bg-gray-800/95 backdrop-blur-md p-4 shadow-xl z-50">
+            <div className="absolute right-0 top-full mt-2 w-64 rounded-lg bg-slate-800/100 backdrop-blur-md p-4 shadow-xl z-50">
               {/* <button
                 onClick={handleSwitchToImperial}
                 className="w-full text-left text-sm font-medium text-white hover:text-gray-200 mb-4 pb-4 border-b border-gray-700"

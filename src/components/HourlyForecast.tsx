@@ -32,7 +32,7 @@ const HourlyForecast = () => {
   const tempSymbol = getTemperatureSymbol(units.temperature);
 
   return (
-    <div className="w-full lg:w-80  bg-white/10 rounded-xl p-4">
+    <div className="w-full lg:w-80  bg-white/10 rounded-xl py-3 px-4">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-white font-sans">
           Hourly forecast
@@ -45,8 +45,9 @@ const HourlyForecast = () => {
             <span>{selectedDay}</span>
             <img src={dropdownIcon} alt="dropdown" className="h-3 w-3" />
           </button>
+          {/* day dropdown */}
           {isOpen && (
-            <div className="absolute right-0 top-full mt-2 rounded-lg bg-gray-800/95 backdrop-blur-md shadow-xl z-50 min-w-[120px]">
+            <div className="absolute right-0 top-full mt-2 rounded-lg bg-slate-800/100 backdrop-blur-md shadow-xl z-50 min-w-[160px]">
               {days.map((day) => (
                 <button
                   key={day}
@@ -63,11 +64,12 @@ const HourlyForecast = () => {
           )}
         </div>
       </div>
-      <div className="space-y-2">
+      {/* weather cards */}
+      <div className="space-y-3">
         {hourlyForecast.map((hour, index) => (
           <div
             key={index}
-            className="flex items-center justify-between rounded-xl bg-white/10 p-3 backdrop-blur-sm"
+            className="flex  items-center justify-between rounded-xl bg-white/10 p-3 backdrop-blur-sm"
           >
             <div className="flex items-center justify-center gap-2">
               <img

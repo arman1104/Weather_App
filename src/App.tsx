@@ -1,10 +1,10 @@
-import WeatherContent from "./components/WeatherContent";
+import Home from "./components/Home";
 
 const App = () => {
   return (
     <div className="min-h-screen bg-[hsl(243,96%,9%)] text-white">
       <div className="mb-10">
-        <WeatherContent />
+        <Home />
       </div>
     </div>
   );
