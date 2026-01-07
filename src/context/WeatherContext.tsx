@@ -81,6 +81,7 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
       if (!res.ok) throw new Error("API error");
 
       const data = await res.json();
+      // console.log(data);
 
       // CURRENT
       setCurrentWeather({
@@ -144,6 +145,9 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
       const data = await res.json();
       if (!data.results || data.results.length === 0) {
         setError("No search result found!");
+        setCurrentWeather(null);
+        setHourlyForecast([]);
+        setDailyForecast([]);
         return;
       }
 

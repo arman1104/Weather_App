@@ -25,20 +25,27 @@ const Home = () => {
       <SearchBar />
 
       {/* ERROR STATE */}
-      {error && !currentWeather && (
-        <div className="flex flex-col items-center justify-center min-h-[400px] max-w-7xl mx-auto px-4 mt-12">
+
+      {/* NO SEARCH RESULT  */}
+      {error === "No search result found!" && (
+        <p className="mt-6 text-center text-lg text-gray-200 font-sans">
+          No search result found!
+        </p>
+      )}
+
+      {/* API ERROR  */}
+      {error && error !== "No search result found!" && !currentWeather && (
+        <div className="flex flex-col items-center justify-center max-w-6xl mx-auto px-4 mt-10">
           <img
             src={errorIcon}
             alt="error"
-            className="h-24 w-24 mb-6 opacity-80"
+            className="h-12 w-12 mb-6 opacity-80"
           />
           <h2 className="text-2xl font-bold font-bricolage mb-2">
             Something went wrong
           </h2>
           <p className="text-gray-400 font-sans mb-6 text-center max-w-md">
-            {error === "No search result found!"
-              ? "We couldn't find that location. Please try another place."
-              : "We couldn't connect to the server. Please try again later."}
+            We couldn't connect to the server. Please try again later.
           </p>
           <button
             onClick={retry}
