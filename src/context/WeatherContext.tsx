@@ -126,7 +126,7 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // -------- SEARCH (OPEN-METEO GEOCODING) --------
+  // -------- SEARCH --------
   const searchLocation = async (query: string) => {
     if (!query.trim()) return;
 
@@ -174,8 +174,12 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // useEffect(() => {
+  //   searchLocation("Berlin");
+  // }, []);
+
   useEffect(() => {
-    searchLocation("Berlin");
+    fetchWeather(12.9716, 77.5946, "Bangalore", "India");
   }, []);
 
   return (

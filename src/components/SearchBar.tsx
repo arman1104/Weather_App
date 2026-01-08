@@ -2,26 +2,54 @@ import { useEffect, useRef, useState } from "react";
 import searchIcon from "../assets/images/icon-search.svg";
 import { useWeather } from "../context/WeatherContext";
 
+interface Suggestion {
+  name: string;
+  country: string;
+}
+
 const SearchBar = () => {
   const { searchQuery, setSearchQuery, searchLocation, searchInProgress } =
     useWeather();
 
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
-  // Mock suggestions (UI-only, matches design)
-  const mockSuggestions = ["Berlin", "London", "New York", "Paris"];
-
-  // Suggestions actually appear now
+  // ---------------- AUTOCOMPLETE ----------------
   useEffect(() => {
-    if (searchQuery.trim().length > 0) {
-      setSuggestions(mockSuggestions);
-      setShowSuggestions(true);
-    } else {
+    if (searchQuery.trim().length < 2) {
       setSuggestions([]);
       setShowSuggestions(false);
+      return;
     }
+
+    const timeout = setTimeout(async () => {
+      try {
+        const res = await fetch(
+          `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
+            searchQuery
+          )}&count=5`
+        );
+
+        if (!res.ok) return;
+
+        const data = await res.json();
+
+        if (data.results) {
+          setSuggestions(
+            data.results.map((item: any) => ({
+              name: item.name,
+              country: item.country,
+            }))
+          );
+          setShowSuggestions(true);
+        }
+      } catch {
+        setSuggestions([]);
+      }
+    }, 400); // ⏱ debounce
+
+    return () => clearTimeout(timeout);
   }, [searchQuery]);
 
   // Close dropdown on outside click
@@ -42,16 +70,10 @@ const SearchBar = () => {
     await searchLocation(searchQuery);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
-
-  const handleSuggestionClick = async (city: string) => {
-    setSearchQuery(city);
+  const handleSuggestionClick = async (place: string) => {
+    setSearchQuery(place);
     setShowSuggestions(false);
-    await searchLocation(city);
+    await searchLocation(place);
   };
 
   return (
@@ -59,9 +81,8 @@ const SearchBar = () => {
       ref={searchRef}
       className="flex flex-col items-center justify-center gap-3 mt-6 md:mt-8 max-w-7xl mx-auto px-4"
     >
-      {/* <div className="flex w-full max-w-xl gap-2 md:gap-3 relative outline-dotted"> */}
-      <div className="flex flex-col md:flex-row w-full max-w-xl gap-2 md:gap-3 relative">
-        {/* Input */}
+      <div className="flex flex-col sm:flex-row w-full max-w-xl gap-3 relative">
+        {/* INPUT */}
         <div className="relative flex-1">
           <img
             src={searchIcon}
@@ -73,36 +94,36 @@ const SearchBar = () => {
             value={searchQuery}
             placeholder="Search for a place..."
             onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-            onFocus={() => searchQuery && setShowSuggestions(true)}
             className="
               w-full
               pl-12 pr-4 py-3
               rounded-lg
               bg-white/15
               text-white text-sm font-sans
-              placeholder-gray-200
-              focus:outline-none focus:ring-1 focus:ring-white
+              placeholder-gray-300
+              focus:outline-none focus:ring-2 focus:ring-white/50
             "
           />
 
-          {/* Suggestions */}
+          {/* DROPDOWN */}
           {showSuggestions && suggestions.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-2 rounded-lg bg-slate-800/100 backdrop-blur-md shadow-xl z-50">
-              {suggestions.map((city) => (
+            <div className="absolute top-full left-0 right-0 mt-2 rounded-lg bg-[hsl(243,27%,20%)] backdrop-blur-md shadow-xl z-50">
+              {suggestions.map((item, i) => (
                 <button
-                  key={city}
-                  onClick={() => handleSuggestionClick(city)}
-                  className="w-full text-left px-4 py-3 text-sm text-white hover:bg-white/10 first:rounded-t-lg last:rounded-b-lg"
+                  key={i}
+                  onClick={() =>
+                    handleSuggestionClick(`${item.name}, ${item.country}`)
+                  }
+                  className="w-full text-left px-4 py-3 text-sm text-white hover:bg-white/10"
                 >
-                  {city}
+                  {item.name}, {item.country}
                 </button>
               ))}
             </div>
           )}
         </div>
 
-        {/* Button */}
+        {/* BUTTON */}
         <button
           onClick={handleSearch}
           disabled={searchInProgress}
@@ -110,20 +131,14 @@ const SearchBar = () => {
             px-6 py-3
             bg-indigo-600
             rounded-lg
-            text-sm font-medium text-white font-sans
+            text-sm font-medium text-white
             hover:bg-indigo-700
-            focus:outline-none focus:ring-2 focus:ring-indigo-600
-            disabled:opacity-50 disabled:cursor-not-allowed
+            disabled:opacity-50
           "
         >
           Search
         </button>
       </div>
-
-      {/* Loading text */}
-      {searchInProgress && (
-        <p className="text-sm text-gray-400 font-sans">Search in progress</p>
-      )}
     </div>
   );
 };
