@@ -1,12 +1,12 @@
-import { useWeather } from "../context/WeatherContext";
-import SearchBar from "./SearchBar";
-import WeatherCard from "./WeatherCard";
-import WeatherStatCard from "./WeatherStatCard";
-import DailyForecast from "./DailyForecast";
-import HourlyForecast from "./HourlyForecast";
-import errorIcon from "../assets/images/icon-error.svg";
-import retryIcon from "../assets/images/icon-retry.svg";
-import Header from "./Header";
+import { useWeather } from "../../context/WeatherContext";
+import SearchBar from "../SearchBar";
+import WeatherCard from "../WeatherCard";
+import WeatherStatCard from "../WeatherStatCard";
+import DailyForecast from "../DailyForecast";
+import HourlyForecast from "../HourlyForecast";
+import errorIcon from "../../assets/images/icon-error.svg";
+import retryIcon from "../../assets/images/icon-retry.svg";
+import Header from "../Header";
 
 const Home = () => {
   const { currentWeather, error, retry } = useWeather();
