@@ -31,6 +31,35 @@ const HourlyForecast = () => {
     convertTemperature(temp, units.temperature);
   const tempSymbol = getTemperatureSymbol(units.temperature);
 
+  const today = new Date();
+
+  // Find date for selected day
+  let targetDate = new Date(today);
+
+  if (selectedDay === "Tomorrow") {
+    targetDate.setDate(today.getDate() + 1);
+  } else if (selectedDay !== "Today") {
+    const targetWeekday = selectedDay;
+    while (
+      targetDate.toLocaleDateString("en-US", { weekday: "long" }) !==
+      targetWeekday
+    ) {
+      targetDate.setDate(targetDate.getDate() + 1);
+    }
+  }
+
+  // Filter hours for that day
+  const filteredByDay = hourlyForecast.filter((hour) => {
+    const d = new Date(hour.time);
+    return (
+      d.getDate() === targetDate.getDate() &&
+      d.getMonth() === targetDate.getMonth()
+    );
+  });
+
+  // Take ONLY 8 hours
+  const eightHourForecast = filteredByDay.slice(0, 8);
+
   return (
     <div className="w-full lg:w-80  bg-white/10 rounded-xl py-3 px-4">
       <div className="flex items-center justify-between mb-4">
@@ -66,7 +95,7 @@ const HourlyForecast = () => {
       </div>
       {/* weather cards */}
       <div className="space-y-3">
-        {hourlyForecast.map((hour, index) => (
+        {eightHourForecast.map((hour, index) => (
           <div
             key={index}
             className="flex  items-center justify-between rounded-md bg-white/10 p-3 backdrop-blur-sm"
@@ -78,13 +107,15 @@ const HourlyForecast = () => {
                 className="h-7 w-7 object-contain"
               />
               <span className="text-sm text-white font-sans">
-                {formatHour(hour.time)} PM
+                {/* {formatHour(hour.time)} PM */}
+                {formatHour(hour.time)}
               </span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-sm font-medium text-white font-sans min-w-[3rem] text-right">
                 {temperature(hour.temperature)}
-                {tempSymbol.replace("°", " ")}°
+                {/* {tempSymbol.replace("°", " ")}° */}
+                {tempSymbol}
               </span>
             </div>
           </div>

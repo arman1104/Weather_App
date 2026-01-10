@@ -98,8 +98,15 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
       });
 
       // HOURLY (next 8 hours)
+      // setHourlyForecast(
+      //   data.hourly.time.slice(0, 8).map((time: string, i: number) => ({
+      //     time,
+      //     temperature: data.hourly.temperature_2m[i],
+      //     conditionCode: data.hourly.weather_code[i],
+      //   }))
+      // );
       setHourlyForecast(
-        data.hourly.time.slice(0, 8).map((time: string, i: number) => ({
+        data.hourly.time.map((time: string, i: number) => ({
           time,
           temperature: data.hourly.temperature_2m[i],
           conditionCode: data.hourly.weather_code[i],
